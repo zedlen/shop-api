@@ -28,8 +28,8 @@ describe('FeatureFlagController', () => {
   });
 
   describe('get specific FF by code', () => {
-    it('should return a featureflag item', () => {
-      expect(appController.showAll("")).toEqual({});
+    it('should return a featureflag item', async () => {
+      expect(await appController.showAll("")).toEqual([]);
     });
   });
 });
