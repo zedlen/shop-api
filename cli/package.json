@@ -1,0 +1,20 @@
+{
+  "name": "devsouls-cli",
+  "version": "0.0.1",
+  "description": "Simple CLI to generate folder structure",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Zedlen",
+  "license": "ISC",
+  "bin": {
+    "devsouls": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "commander": "^9.4.0",
+    "figlet": "^1.5.2",
+    "lodash": "^4.17.21"
+  }
+}
