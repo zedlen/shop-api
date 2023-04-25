@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { FeatureFlagController } from './feature-flag.controller';
-import { FeatureFlagService } from '../../domain/feature-flag.service';
-import { FeatureFlagRepository } from '../repositories/feature-flag.repository';
-import { AuthGuard } from '../../../../core/guards/auth.guard';
-import { FeatureFlagEntity, FeatureFlagSchema } from '../../domain/models/entities/feature-flag.entity';
+import { FeatureFlagController } from '../../../../src/modules/feature-flag/infrastructure/controllers/feature-flag.controller';
+import { FeatureFlagService } from '../../../../src/modules/feature-flag/domain/feature-flag.service';
+import { FeatureFlagRepository } from '../../../../src/modules/feature-flag/infrastructure/repositories/feature-flag.repository';
+import { AuthGuard } from '../../../../src/core/guards/auth.guard';
+import { FeatureFlagEntity, FeatureFlagSchema } from '../../../../src/modules/feature-flag/domain/models/entities/feature-flag.entity';
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Connection, connect, Model } from "mongoose";
 import { getModelToken } from "@nestjs/mongoose";

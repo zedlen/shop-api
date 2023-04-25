@@ -28,7 +28,7 @@ export class FeatureFlagService {
     return this.featureflagRepository.findOne(id);
   }
 
-  async getAll(code): Promise<FeatureFlagInterface[]> {
+  async getAll(code?): Promise<FeatureFlagInterface[]> {
     if (code) {
       return this.featureflagRepository.findByCode(code);
     }

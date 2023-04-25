@@ -4,13 +4,13 @@ export class UpdateDto {
   @IsOptional()
   @IsNotEmpty()
   @IsString()
-  public description: string;
+  public description?: string;
 
   @IsOptional()
   @IsBoolean()
-  public enable_all: boolean;
+  public enable_all?: boolean;
 
   @IsOptional()
   @IsArray()
-  public sellers: string;
+  public sellers?: string;
 }
