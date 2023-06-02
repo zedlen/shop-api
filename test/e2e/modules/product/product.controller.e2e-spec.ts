@@ -8,7 +8,7 @@ import {
   payloadWithEmptyCarriers,
   unauthorizedResponse,
   validPayload,
-} from './item-controller.mock';
+} from './product-controller.mock';
 import { Product } from '../../../../src/modules/product/product.module';
 
 describe('Coverage controller', () => {
