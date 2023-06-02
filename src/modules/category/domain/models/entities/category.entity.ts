@@ -3,11 +3,11 @@ import { Document, Schema as mongooseSchema } from 'mongoose';
 
 /* Verify the name of the collection */
 @Schema({
-  collection: 'categoriess',
+  collection: 'categories',
   timestamps: true,
   versionKey: false,
 })
-export class CategoriesEntity extends Document {
+export class CategoryEntity extends Document {
 }
 
-export const CategoriesSchema = SchemaFactory.createForClass(CategoriesEntity);
+export const CategorySchema = SchemaFactory.createForClass(CategoryEntity);
