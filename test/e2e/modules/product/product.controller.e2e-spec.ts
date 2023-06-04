@@ -3,6 +3,7 @@ import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify
 import { Test } from '@nestjs/testing';
 import { mongoDbMemoryModule, closeMongoDbConnection } from '../../../database/mongo-handler';
 import {
+  badRequestResponse,
   duplicateProductError,
   invalidPayload,
   unauthorizedResponse,
@@ -76,7 +77,7 @@ describe('Product controller', () => {
         .expect(400)
         .expect((res) => {
           expect(res.body.errors).toBeInstanceOf(Array);
-          expect(res.body.errors[0]).toStrictEqual(unauthorizedResponse);
+          expect(res.body.errors[0]).toStrictEqual(badRequestResponse);
         });
     });
   })
@@ -112,6 +113,70 @@ describe('Product controller', () => {
     it('should return product not found', async () => {
       await request(server)
         .get('/products/lost_item')        
+        .expect(404)        
+    });
+  })
+
+  describe('Update product', () => {
+    it('should update product', async () => {
+      await request(server)
+        .patch('/products/item_id')  
+        .set('Authorization', `token=test`)      
+        .send({discount_price: 80})
+        .expect(200)
+        .expect((res) => {
+          expect(res.body.data).toBeInstanceOf(Array);          
+        });
+    });
+
+    it('should return unauthorized', async () => {
+      await request(server)
+        .patch('/products/item_id')
+        .set('Authorization', `token=123`)
+        .send({discount_price: 80})
+        .expect(401)
+        .expect((res) => {
+          expect(res.body.errors).toBeInstanceOf(Array);
+          expect(res.body.errors[0]).toStrictEqual(unauthorizedResponse);
+        });
+    });
+
+
+    it('should return product not found', async () => {
+      await request(server)
+        .delete('/products/lost_item')        
+        .set('Authorization', `token=token`)
+        .expect(404)        
+    });
+  })
+
+  describe('Delete product', () => {
+    it('should delete product', async () => {
+      await request(server)
+        .delete('/products/item_id')  
+        .set('Authorization', `token=test`)      
+        .expect(200)
+        .expect((res) => {
+          expect(res.body.data).toBeInstanceOf(Array);          
+        });
+    });
+
+    it('should return unauthorized', async () => {
+      await request(server)
+        .delete('/products/item_id')
+        .set('Authorization', `token=123`)
+        .expect(401)
+        .expect((res) => {
+          expect(res.body.errors).toBeInstanceOf(Array);
+          expect(res.body.errors[0]).toStrictEqual(unauthorizedResponse);
+        });
+    });
+
+
+    it('should return product not found', async () => {
+      await request(server)
+        .delete('/products/lost_item')        
+        .set('Authorization', `token=token`)
         .expect(404)        
     });
   })
